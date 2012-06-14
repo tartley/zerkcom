@@ -22,5 +22,6 @@ def create_parser():
     parser.add_argument('--version', action='version', version=VERSION)
     parser.add_argument('--fullscreen', action='store_true', default=False)
     parser.add_argument('--vsync', action='store_true', default=False)
+    parser.add_argument('--exit', action='store_true', default=False)
     return parser
 

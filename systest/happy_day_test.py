@@ -27,7 +27,7 @@ def call_process(command, expected_out='', expected_err=''):
 class HappyDayTest(TestCase):
 
     def test_no_args(self):
-        call_process('adventure', '')
+        call_process('adventure --exit', '')
 
     def test_help(self):
         call_process('adventure --help', ['usage:', 'adventure version '])

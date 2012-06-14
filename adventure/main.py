@@ -11,6 +11,7 @@ def create_window(options):
         vsync=options.vsync,
         visible=True,
         resizable=True,
+        caption='Adventure',
     )
 
 
@@ -23,6 +24,14 @@ def main(*args):
     def on_draw():
         window.clear()
 
+    def update(dt):
+        if options.exit:
+            pyglet.app.exit()
+
+        window.invalid = True
+
+    pyglet.clock.schedule(update)
+    window.invalid = False
     try:
         pyglet.app.run()
     finally:
