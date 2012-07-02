@@ -3,26 +3,21 @@ import sys
 import pyglet
 
 from .options import create_parser
-
-
-def create_window(options):
-    return pyglet.window.Window(
-        fullscreen=options.fullscreen,
-        vsync=options.vsync,
-        visible=True,
-        resizable=True,
-        caption='Adventure',
-    )
+from .game import start
+from .render import clear_screen
+from .window import create_window
 
 
 # setup.py install/develop creates an executable that calls 'main()'
 def main(*args):
     options = create_parser().parse_args(sys.argv[1:])
     window = create_window(options)
+    world = set()
+    start(world)
 
     @window.event
     def on_draw():
-        window.clear()
+        clear_screen()
 
     def update(dt):
         if options.exit:

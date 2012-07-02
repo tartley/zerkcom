@@ -42,12 +42,12 @@ upload: clean
 # profile:
 #   # runsnake is a GUI visualiser for the output of cProfile
 #   # http://www.vrplumber.com/programming/runsnakerun/
-# 	python -O -m cProfile -o profile.out adventure
+# 	python -O -m cProfile -o profile.out tanks
 # 	runsnake profile.out
 # .PHONY: profile
 
 # py2exe:
-# 	rm -rf dist/adventure-${RELEASE}.* build
+# 	rm -rf dist/tanks-${RELEASE}.* build
 # 	python setup.py --quiet py2exe
 # .PHONY: py2exe
 

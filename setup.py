@@ -15,7 +15,7 @@ from setuptools import setup, find_packages
 # import setup.py before our dependencies have been installed)
 
 
-NAME = 'adventure'
+NAME = 'tanks'
 
 
 def read_description(filename):
