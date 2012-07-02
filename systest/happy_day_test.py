@@ -27,11 +27,13 @@ def call_process(command, expected_out='', expected_err=''):
 class HappyDayTest(TestCase):
 
     def test_no_args(self):
-        call_process('adventure --exit', '')
+        # add the '--exit' flag as a cheaty way for the test to make the 
+        # application exit
+        call_process('tanks --exit', '')
 
     def test_help(self):
-        call_process('adventure --help', ['usage:', 'adventure version '])
+        call_process('tanks --help', ['usage:', 'tanks version '])
 
     def test_version(self):
-        call_process('adventure --version', expected_err=['adventure version '])
+        call_process('tanks --version', expected_err=['tanks version '])
 
