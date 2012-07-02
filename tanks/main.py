@@ -9,7 +9,7 @@ from .window import create_window
 
 
 # setup.py install/develop creates an executable that calls 'main()'
-def main(*args):
+def main():
     options = create_parser().parse_args(sys.argv[1:])
     window = create_window(options)
     world = set()
@@ -27,8 +27,9 @@ def main(*args):
 
     pyglet.clock.schedule(update)
     window.invalid = False
-    try:
-        pyglet.app.run()
-    finally:
-        window.close()
+    pyglet.app.run()
+
+
+if __name__ == '__main__':
+    main()
 
