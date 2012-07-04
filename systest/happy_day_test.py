@@ -24,12 +24,7 @@ def call_process(command, expected_out='', expected_err=''):
     assert_output(out, expected_out)
 
 
-class HappyDayTest(TestCase):
-
-    def test_no_args(self):
-        # add the '--exit' flag as a cheaty way for the test to make the 
-        # application exit
-        call_process('tanks --exit', '')
+class CommandLineArgsTest(TestCase):
 
     def test_help(self):
         call_process('tanks --help', ['usage:', 'tanks version '])

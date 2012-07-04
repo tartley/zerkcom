@@ -10,9 +10,8 @@ def create_window(options):
     return pyglet.window.Window(
         fullscreen=options.fullscreen,
         vsync=options.vsync,
-        visible=True,
-        resizable=True,
-        caption='Adventure',
+        resizable=not options.fullscreen,
+        caption='Tanks',
     )
 
 
@@ -20,14 +19,12 @@ def create_window(options):
 def main():
     options = create_parser().parse_args(sys.argv[1:])
     window = create_window(options)
-
+    
     @window.event
     def on_draw():
         clear_screen()
 
     def update(dt):
-        if options.exit:
-            pyglet.app.exit()
 
         window.invalid = True
 
