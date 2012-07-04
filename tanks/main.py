@@ -4,6 +4,7 @@ import pyglet
 
 from .options import create_parser
 from .view.render import clear_screen
+from .model.world import World
 
 
 def create_window(options):
@@ -19,13 +20,13 @@ def create_window(options):
 def main():
     options = create_parser().parse_args(sys.argv[1:])
     window = create_window(options)
-    
+    world = World()
+
     @window.event
     def on_draw():
         clear_screen()
 
     def update(dt):
-
         window.invalid = True
 
     pyglet.clock.schedule(update)
