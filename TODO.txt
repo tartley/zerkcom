@@ -1,0 +1,7 @@
+- Add a rectangle
+- controllable by keyboard
+- add visible walls
+    - single Item, shape is multiple rectangles
+- collision detection with walls
+- bitmaps on each rect, all from the same imageatlas
+
