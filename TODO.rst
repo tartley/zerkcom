@@ -1,9 +1,8 @@
 - try some transparent pixels
-- view stores sprite in its own collection
-- player is rendered using nearest-neighbour
+- try rendering with nearest-neighbour
 - player is controllable by keyboard (input is a type of control)
-- start_game is another control
 - control for standard application controls (fullscreen, vsync, fps)
+- start_game is another control
 - add visible walls
     - single Item, shape is multiple rectangles
 - model update methods are actually controllers:
@@ -27,6 +26,7 @@
       as a tree, so that matrices can be applied cumulatively. Or maybe each
       item has an 'items' collection, just like the world.
 - enemy tanks
+- view stores sprite in its own collection (a batch!)
 - add score
 - add a sound: tank drive
 
@@ -43,4 +43,5 @@ done
 - view converts image name into sprite
 - move png to data dir
 - test data dir on installed package
+- resource manager loads all images files at startup, makes accessible by name
 

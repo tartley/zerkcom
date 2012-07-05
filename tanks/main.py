@@ -6,6 +6,7 @@ from .view import render
 from .options import create_parser
 from .model.world import World
 from .model.item import Item
+from .resource import load_images
 
 
 def create_window(options):
@@ -27,10 +28,10 @@ def create_player():
 # setup.py install/develop creates an executable that calls 'main()'
 def main():
     options = create_parser().parse_args(sys.argv[1:])
-    window = create_window(options)
+    images = load_images('data/images')
     world = World()
-    render.init(window, world)
-
+    window = create_window(options)
+    render.init(window, world, images)
     world.add(create_player())
 
     def update(dt):

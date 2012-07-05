@@ -142,11 +142,9 @@ def create_manifest_in(data_dir):
                 
 def main():
     data_dir = os.path.join(NAME, 'data')
-
     create_manifest_in(data_dir)
 
     config = get_sdist_config(data_dir)
-
     if '--verbose' in sys.argv:
         from pprint import pprint
         pprint(config)
