@@ -1,6 +1,7 @@
-- Add 'player' item, pyglet sprite
-- world sends 'add item' signal
-- view converts shape into glyph
+- move png to data dir
+- try some transparent pixels
+- view stores sprite in its own collection
+- player is rendered using nearest-neighbour
 - player is controllable by keyboard (input is a type of control)
 - start_game is another control
 - control for standard application controls (fullscreen, vsync, fps)
@@ -38,4 +39,6 @@ speculative
 
 done
 ====
-
+- Add 'player' item, with sprite image name
+- world sends 'add item' signal
+- view converts image name into sprite

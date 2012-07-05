@@ -9,6 +9,9 @@ class World(object):
         self.item_added = Event()
         self.item_removed = Event()
 
+    def __iter__(self):
+        return iter(self.items)
+
     def add(self, item, position=None):
         self.items.add(item)
         self.item_added(item)
