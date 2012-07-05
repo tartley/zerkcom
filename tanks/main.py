@@ -39,7 +39,3 @@ def main():
     pyglet.clock.schedule(update)
     pyglet.app.run()
 
-
-if __name__ == '__main__':
-    main()
-

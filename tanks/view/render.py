@@ -1,3 +1,5 @@
+import os
+
 import pyglet
 from pyglet import gl
 
@@ -16,9 +18,9 @@ def clear_screen(color=CLEAR_COLOR_DEFAULT):
 
 
 def get_sprite(name):
-    sprite = pyglet.sprite.Sprite(
-        pyglet.image.load(name + '.png')
-    )
+    pyglet.resource.path = [os.path.dirname(__file__) + '/../../data']
+    image = pyglet.resource.texture(name + '.png')
+    sprite = pyglet.sprite.Sprite(image)
     sprite.scale = 4
     return sprite
 
