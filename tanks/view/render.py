@@ -1,5 +1,4 @@
-import os
-
+from pkg_resources import resource_stream
 import pyglet
 from pyglet import gl
 
@@ -18,8 +17,10 @@ def clear_screen(color=CLEAR_COLOR_DEFAULT):
 
 
 def get_sprite(name):
-    pyglet.resource.path = [os.path.dirname(__file__) + '/../../data']
-    image = pyglet.resource.texture(name + '.png')
+    image = pyglet.image.load(
+        '%s.png' % (name,),
+        resource_stream('tanks', 'data/%s.png' % (name,)),
+    )
     sprite = pyglet.sprite.Sprite(image)
     sprite.scale = 4
     return sprite

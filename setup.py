@@ -1,7 +1,6 @@
 #!/usr/bin/env python2.7
 from glob import glob
 import os
-from os.path import join
 import re
 import sys
 
@@ -49,27 +48,26 @@ def find_value(source, identifier):
     return match.group(1)
 
 
-def get_package_data(topdir, excluded=set()):
-    retval = []
-    for dirname, subdirs, files in os.walk(join(NAME, topdir)):
-        for x in excluded:
-            if x in subdirs:
-                subdirs.remove(x)
-        retval.append(join(dirname[len(NAME) + 1:], '*.*'))
-    return retval
+
+def get_package_data(topdir):
+    return (
+        os.path.join(dirname[len(NAME) + 1:], '*.*')
+        for dirname, subdirs, files in os.walk(topdir)
+    )
 
 
 def get_data_files(dest, source):
-    retval = []
-    for dirname, subdirs, files in os.walk(source):
-        retval.append(
-            (join(dest, dirname[len(source)+1:]), glob(join(dirname, '*.*')))
+    return [
+        (
+            os.path.join(dest, dirname[len(source) + 1:]),
+            glob(os.path.join(dirname, '*.*'))
         )
-    return retval
+        for dirname, subdirs, files in os.walk(source)
+    ]
 
 
-def get_sdist_config():
-    description, long_description = read_description('README.rst')
+def get_sdist_config(data_dir):
+    description, long_description = read_description('README')
 
     install_requires = []
     if sys.version_info < (2, 7):
@@ -77,7 +75,10 @@ def get_sdist_config():
 
     return dict(
         name=NAME,
-        version=find_value(read_file(join(NAME, '__init__.py')), '__version__'),
+        version=find_value(
+            read_file(os.path.join(NAME, '__init__.py')),
+            '__version__'
+        ),
         description=description,
         long_description=long_description,
         url='http://pypi.python.org/pypi/%s/' % (NAME,),
@@ -90,7 +91,7 @@ def get_sdist_config():
         },
         install_requires=install_requires,
         packages=find_packages(exclude=('*.tests',)),
-        #include_package_data=True,
+        include_package_data=True,
         #package_data={
             #'package.subpackage': ['globs'],
             #NAME: get_package_data('data')
@@ -98,9 +99,7 @@ def get_sdist_config():
         #exclude_package_data={
             #'package.subpackage': ['globs']
         #},
-        #data_files=[
-            # ('install-dir', ['files-relative-to-setup.py']),
-        #], 
+        #data_files=get_data_files(data_dir, 'data'),
         # see classifiers:
         # http://pypi.python.org/pypi?:action=list_classifiers
         classifiers=[
@@ -130,33 +129,28 @@ def get_sdist_config():
             #'Programming Language :: Python :: 3',
             #'Programming Language :: Python :: 3.2',
             'Programming Language :: Python :: Implementation :: CPython',
-            #'Topic :: Games/Entertainment',
+            'Topic :: Games/Entertainment',
         ],
         zip_safe=True,
     )
 
 
-def get_py2app_config():
-    # This doesn't work. When I run the resulting application, it
-    # barfs due to missing stdlib packages 'platform' and 'ctypes'. Adding
-    # 'platform' to 'options.py2app.packages' (below) fixes that error, but
-    # adding 'ctypes' does not. :-(
-    return dict(
-        app=[join(NAME, 'main.py')],
-        options=dict(
-            py2app=dict(
-                argv_emulation=True,
-                packages=['platform', 'ctypes'],
-            ),
-        ),
-    )
-
-
+def create_manifest_in(data_dir):
+    with open('MANIFEST.in', 'w') as fd:
+        for dirname, subdirs, files in os.walk(data_dir):
+            fd.write('include %s/*.*\n' % (dirname, ))
+                
 def main():
-    config = {}
-    config.update(get_sdist_config())
-    if 'py2app' in sys.argv:
-        config.update(get_py2app_config())
+    data_dir = os.path.join(NAME, 'data')
+
+    create_manifest_in(data_dir)
+
+    config = get_sdist_config(data_dir)
+
+    if '--verbose' in sys.argv:
+        from pprint import pprint
+        pprint(config)
+
     setup(**config)
 
 

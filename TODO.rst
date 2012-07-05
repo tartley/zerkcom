@@ -1,4 +1,3 @@
-- test data dir on installed package
 - try some transparent pixels
 - view stores sprite in its own collection
 - player is rendered using nearest-neighbour
@@ -43,3 +42,5 @@ done
 - world sends 'add item' signal
 - view converts image name into sprite
 - move png to data dir
+- test data dir on installed package
+
