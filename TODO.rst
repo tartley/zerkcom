@@ -1,4 +1,3 @@
-- try some transparent pixels
 - try rendering with nearest-neighbour
 - player is controllable by keyboard (input is a type of control)
 - control for standard application controls (fullscreen, vsync, fps)
@@ -44,4 +43,4 @@ done
 - move png to data dir
 - test data dir on installed package
 - resource manager loads all images files at startup, makes accessible by name
-
+- try some transparent pixels
