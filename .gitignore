@@ -1,5 +1,6 @@
 *.py[oc]
 *.egg-info
+MANIFEST.in
 build
 dist
 tags
