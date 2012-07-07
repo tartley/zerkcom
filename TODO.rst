@@ -1,5 +1,10 @@
-- try rendering with nearest-neighbour
-- player position is used to render sprite
+- Try lepton instead:
+  pyglet sprites are (a) integer co-ord only, which looks bad for very slow
+  moving or rotating sprites, especially small ones. (b) creates new ctypes
+  array of sprite positions to send to GPU after each move and after each
+  rotation. Ultradumb.
+- instead of nearest neighbour, don't scale the bitmap, and use linear.
+  Provides a blocky look, but still AA the edges between blocks.
 - player is controllable by keyboard (input is a type of control)
 - control for standard application controls (fullscreen, vsync, fps)
 - start_game is another control
@@ -45,3 +50,5 @@ done
 - test data dir on installed package
 - resource manager loads all images files at startup, makes accessible by name
 - try some transparent pixels
+- try rendering with nearest-neighbour
+- player position & rotation is used to render sprite

@@ -1,2 +1,4 @@
-pyobjc==2.2
+lepton=1.0b2
+py2d==0.1
+pyglet=1.2dev
 
