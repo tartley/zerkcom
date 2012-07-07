@@ -1,6 +1,7 @@
 import sys
 
 import pyglet
+from py2d.Math import Vector
 
 from .view import render
 from .options import create_parser
@@ -22,6 +23,8 @@ def create_window(options):
 def create_player():
     return Item(
         sprite='tank',
+        position=Vector(100, 20),
+        angle=-1.0,
     )
 
 
@@ -32,10 +35,12 @@ def main():
     world = World()
     window = create_window(options)
     render.init(window, world, images)
-    world.add(create_player())
+    player = create_player()
+    world.add(player)
 
     def update(dt):
         window.invalid = True
+        player.angle += 0.01
 
     pyglet.clock.schedule(update)
     pyglet.app.run()

@@ -1,8 +1,11 @@
+import math
+
 import pyglet
 from pyglet import gl
 
 
 CLEAR_COLOR_DEFAULT = (0.1, 0.2, 0.3, 1.0)
+RADIANS_TO_DEGREES = 360.0 / (math.pi * 2)
 
 
 def clear_screen(color=CLEAR_COLOR_DEFAULT):
@@ -22,6 +25,8 @@ def init(window, world, images):
     def on_draw():
        clear_screen()
        for item in world:
+           item._sprite.rotation = item.angle * RADIANS_TO_DEGREES
+           item._sprite.set_position(item.position.x, item.position.y)
            item._sprite.draw()
 
     def on_item_added(item):

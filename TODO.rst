@@ -1,4 +1,5 @@
 - try rendering with nearest-neighbour
+- player position is used to render sprite
 - player is controllable by keyboard (input is a type of control)
 - control for standard application controls (fullscreen, vsync, fps)
 - start_game is another control
