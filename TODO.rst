@@ -1,26 +1,17 @@
-- Try lepton instead:
-  pyglet sprites are (a) integer co-ord only, which looks bad for very slow
-  moving or rotating sprites, especially small ones. (b) creates new ctypes
-  array of sprite positions to send to GPU after each move and after each
-  rotation. Ultradumb.
-- instead of nearest neighbour, don't scale the bitmap, and use linear.
-  Provides a blocky look, but still AA the edges between blocks.
-- player is controllable by keyboard (input is a type of control)
-- control for standard application controls (fullscreen, vsync, fps)
-- start_game is another control
-- add visible walls
-    - single Item, shape is multiple rectangles
 - model update methods are actually controllers:
   Need a collection of controllers so that we can call each one (?) every frame.
   Beware of controllers that reference a model which has been removed
   Consider ordering calls to controllers (e.g. update positions first)
-  Consider only calling the ones that are not 'asleep'
-    - control which processes player input, converts keys to tank states
-        (particular to player-controlled tank)
-    - control which converts tank state to tank velocity
-        (particular to tanks)
     - control which adds: pos += vel
         (general to all moving things)
+    - control which converts tank state to tank velocity
+        (particular to tanks)
+    - control which processes player input, converts keys to tank states
+        (particular to player-controlled tank)
+- control for standard application controls (fullscreen, vsync, fps)
+- start_game is another control
+- add visible walls
+    - single Item, shape is multiple rectangles
 - camera zoom and aspect ratio compensation
 - collision detection:
     - cheat on collision response: Invert (perp?) velocity & set pos = prev pos
@@ -40,6 +31,8 @@ speculative
 - world provides .items('aspect') which returns set of items filtered by
   those that have given attribute. (this instead of filtered by class as
   done in SinisterDucks.)
+- instead of nearest neighbour, don't scale the bitmap, and use linear.
+  Provides a blocky look, but still AA the edges between blocks.
 
 done
 ====
@@ -52,3 +45,8 @@ done
 - try some transparent pixels
 - try rendering with nearest-neighbour
 - player position & rotation is used to render sprite
+- Try lepton instead:
+  pyglet sprites are (a) integer co-ord only, which looks bad for very slow
+  moving or rotating sprites, especially small ones. (b) creates new ctypes
+  array of sprite positions to send to GPU after each move and after each
+  rotation. Ultradumb.

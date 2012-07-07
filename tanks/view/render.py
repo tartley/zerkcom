@@ -15,7 +15,7 @@ def clear_screen(color=CLEAR_COLOR_DEFAULT):
 
 def get_sprite(name, image):
     sprite = rabbyt.Sprite(image)
-    sprite.scale = 4
+    sprite.scale = 6
     return sprite
 
 
