@@ -1,7 +1,7 @@
 import math
 
-import pyglet
 from pyglet import gl
+import rabbyt
 
 
 CLEAR_COLOR_DEFAULT = (0.1, 0.2, 0.3, 1.0)
@@ -14,7 +14,7 @@ def clear_screen(color=CLEAR_COLOR_DEFAULT):
     gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT)
 
 def get_sprite(name, image):
-    sprite = pyglet.sprite.Sprite(image)
+    sprite = rabbyt.Sprite(image)
     sprite.scale = 4
     return sprite
 
@@ -39,9 +39,10 @@ def init(window, world, images):
             gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MIN_FILTER, gl.GL_NEAREST) 
 
         for item, position, angle in items:
-            item._sprite.set_position(position.x, position.y)
-            item._sprite.rotation = angle * RADIANS_TO_DEGREES
-            item._sprite.draw()
+            item._sprite.x = position.x
+            item._sprite.y = position.y
+            item._sprite.rot = angle * RADIANS_TO_DEGREES
+            item._sprite.render()
 
     return draw_sprites
 
