@@ -34,13 +34,17 @@ def main():
     images = load_images('data/images')
     world = World()
     window = create_window(options)
-    render.init(window, world, images)
+    draw_sprites = render.init(window, world, images)
     player = create_player()
     world.add(player)
 
+    @window.event
+    def on_draw():
+        draw_sprites((item, item.position, item.angle) for item in world)
+
     def update(dt):
         window.invalid = True
-        player.angle += 0.01
+        player.angle += 0.002
 
     pyglet.clock.schedule(update)
     pyglet.app.run()
