@@ -2,20 +2,21 @@ import sys
 
 import pyglet
 
-from . import keyhandlers
+from .control import controllers
+from .control.player import create_player
 from .model.world import World
 from .options import create_parser
-from .control.player import create_player
 from .view import window
 
 
-# setup.py install/develop creates an executable that calls 'main()'
+# "setup.py install/develop" creates an executable that calls 'main()'
 def main():
     options = create_parser().parse_args(sys.argv[1:])
     world = World()
     win = window.init(world, options)
 
-    keyhandlers.init(win, world)
+    controllers.init(win, world)
+
     world.add(create_player())
 
     def update(dt):

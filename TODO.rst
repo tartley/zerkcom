@@ -1,13 +1,3 @@
-- model update methods are actually controllers:
-  Need a collection of controllers so that we can call each one (?) every frame.
-  Beware of controllers that reference a model which has been removed
-  Consider ordering calls to controllers (e.g. update positions first)
-    - control which adds: pos += vel
-        (general to all moving things)
-    - control which converts tank state to tank velocity
-        (particular to tanks)
-    - control which processes player input, converts keys to tank states
-        (particular to player-controlled tank)
 - control for standard application controls (fullscreen, vsync, fps)
 - start_game is another control
 - add visible walls
@@ -28,6 +18,7 @@
 
 speculative
 ===========
+- Beware of controllers that reference a model which has been removed
 - world provides .items('aspect') which returns set of items filtered by
   those that have given attribute. (this instead of filtered by class as
   done in SinisterDucks.)
@@ -50,3 +41,11 @@ done
   moving or rotating sprites, especially small ones. (b) creates new ctypes
   array of sprite positions to send to GPU after each move and after each
   rotation. Ultradumb.
+- model update methods are actually controllers:
+- Consider ordering calls to controllers (e.g. update positions first)
+    - control which converts tank state to tank velocity
+        (particular to tanks)
+    - control which processes player input, converts keys to tank states
+        (particular to player-controlled tank)
+- Need a collection of controllers so that we can call each one (?) every frame.
+
