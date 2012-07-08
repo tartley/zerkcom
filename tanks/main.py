@@ -2,8 +2,7 @@ import sys
 
 import pyglet
 
-from .control import controllers
-from .control.player import create_player
+from .control import controllers, level
 from .model.world import World
 from .options import create_parser
 from .view import window
@@ -15,6 +14,6 @@ def main():
     world = World()
     win = window.init(world, options)
     controllers.init(win, world)
-    world.add(create_player())
+    level.start(world)
     pyglet.app.run()
 

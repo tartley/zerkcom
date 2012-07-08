@@ -5,7 +5,7 @@ from ..model.item import Item
 from .tank import update_tank
 
 
-def player_keys(item, dt):
+def keys(item, dt):
     item.speed_left = 0
     if item.keyhandler[key.Q]:
         item.speed_left += 1
@@ -21,12 +21,12 @@ def player_keys(item, dt):
     update_tank(item, dt)
 
 
-def create_player():
+def create():
     return Item(
         sprite='tank',
         position=Vector(100, 20),
         angle=-1.0,
         keyhandler=key.KeyStateHandler(),
-        update=player_keys,
+        update=keys,
     )
 
