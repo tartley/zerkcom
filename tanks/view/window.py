@@ -1,17 +1,15 @@
 import pyglet
-from pyglet import gl
+import rabbyt
 
 from ..image import load_all
 from . import sprite
 
 
-CLEAR_COLOR_DEFAULT = (0.1, 0.2, 0.3, 1.0)
+CLEAR_COLOR_DEFAULT = (0.1, 0.3, 0.2)
 
 
 def clear(color=CLEAR_COLOR_DEFAULT):
-    r, g, b, _ = color
-    gl.glClearColor(r, g, b, 1.0)
-    gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT)
+    rabbyt.clear(rgba=CLEAR_COLOR_DEFAULT)
 
 
 def init(world, options):
@@ -22,6 +20,9 @@ def init(world, options):
         resizable=not options.fullscreen,
         caption='Tanks',
     )
+
+    rabbyt.set_viewport((window.width, window.height))
+    rabbyt.set_default_attribs()
 
     @window.event
     def on_draw():
