@@ -4,14 +4,8 @@ from pyglet import gl
 import rabbyt
 
 
-CLEAR_COLOR_DEFAULT = (0.1, 0.2, 0.3, 1.0)
 RADIANS_TO_DEGREES = 360.0 / (math.pi * 2)
 
-
-def clear_screen(color=CLEAR_COLOR_DEFAULT):
-    r, g, b, _ = color
-    gl.glClearColor(r, g, b, 1.0)
-    gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT)
 
 def get_sprite(name, image):
     sprite = rabbyt.Sprite(image)
@@ -31,8 +25,6 @@ def init(window, world, images):
     world.item_removed += on_item_removed
 
     def draw_sprites(items):
-        clear_screen()
-
         gl.glTexParameteri(
             gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MAG_FILTER, gl.GL_NEAREST) 
         gl.glTexParameteri(
