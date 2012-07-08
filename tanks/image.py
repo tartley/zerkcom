@@ -18,7 +18,7 @@ def _load_image(filename):
     return texture
 
 
-def load_images(directory):
+def load_all(directory):
     return {
         _get_name(filename): _load_image(directory + '/' + filename)
         for filename in resource_listdir('tanks', directory)

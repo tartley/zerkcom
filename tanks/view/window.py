@@ -1,8 +1,8 @@
 import pyglet
 from pyglet import gl
 
-from ..resource import load_images
-from . import render
+from ..image import load_all
+from . import sprite
 
 
 CLEAR_COLOR_DEFAULT = (0.1, 0.2, 0.3, 1.0)
@@ -28,7 +28,7 @@ def init(world, options):
         clear()
         draw_sprites((item, item.position, item.angle) for item in world)
 
-    draw_sprites = render.init(window, world, load_images('data/images'))
+    draw_sprites = sprite.init(window, world, load_all('data/images'))
 
     return window
 
