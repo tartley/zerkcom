@@ -2,11 +2,12 @@ import sys
 
 import pyglet
 
-from .view import render
-from .options import create_parser
+from . import keyhandlers
 from .model.world import World
+from .options import create_parser
+from .control.player import create_player
 from .resource import load_images
-from .player import create_player
+from .view import render
 
 
 def create_window(options):
@@ -18,16 +19,14 @@ def create_window(options):
     )
 
 
-
 # setup.py install/develop creates an executable that calls 'main()'
 def main():
     options = create_parser().parse_args(sys.argv[1:])
-    images = load_images('data/images')
     world = World()
     window = create_window(options)
-    draw_sprites = render.init(window, world, images)
-    player = create_player(window)
-    world.add(player)
+    draw_sprites = render.init(window, world, load_images('data/images'))
+    keyhandlers.init(window, world)
+    world.add(create_player())
 
     @window.event
     def on_draw():
@@ -35,7 +34,7 @@ def main():
 
     def update(dt):
         for item in world:
-            item.control(item, dt)
+            item.update(item, dt)
         window.invalid = True
 
     pyglet.clock.schedule(update)
