@@ -14,16 +14,7 @@ def main():
     options = create_parser().parse_args(sys.argv[1:])
     world = World()
     win = window.init(world, options)
-
     controllers.init(win, world)
-
     world.add(create_player())
-
-    def update(dt):
-        for item in world:
-            item.update(item, dt)
-        win.invalid = True
-
-    pyglet.clock.schedule(update)
     pyglet.app.run()
 
