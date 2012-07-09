@@ -17,7 +17,7 @@ tags:
 .PHONY: tags
 
 clean:
-	rm -rf build dist MANIFEST tags *.egg-info
+	rm -rf build dist MANIFEST tags
 	find . -name '*.py[oc]' -exec rm {} \;
 .PHONY: clean
 
