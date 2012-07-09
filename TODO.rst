@@ -1,20 +1,23 @@
-- control for standard application controls (fullscreen, vsync, fps)
-- start_game is another control
 - add visible walls
-    - single Item, shape is multiple rectangles
-- camera zoom and aspect ratio compensation
+    - single Item, shape is multiple rectangles?
 - collision detection:
     - cheat on collision response: Invert (perp?) velocity & set pos = prev pos
+- camera zoom and aspect ratio compensation
+- control for standard application controls (fullscreen, vsync, fps)
 - add start game screen
-- bitmaps on each rect, all from the same imageatlas
-- tank treads, tank turret:
+- tank treads:
     - model may be 'attached to' another model. view collection stores this
       as a tree, so that matrices can be applied cumulatively. Or maybe each
       item has an 'items' collection, just like the world.
+- tank turret
+- tank can fire
+- explosion
 - enemy tanks
-- view stores sprite in its own collection (a batch!)
+- shots destroy tanks
+- respawn the player
+- add sounds: fire, shoot wall, tank explode, tank drive
 - add score
-- add a sound: tank drive
+
 
 speculative
 ===========
@@ -48,4 +51,5 @@ done
     - control which processes player input, converts keys to tank states
         (particular to player-controlled tank)
 - Need a collection of controllers so that we can call each one (?) every frame.
+- start_game is another control
 
