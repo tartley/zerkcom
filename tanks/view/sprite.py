@@ -31,11 +31,12 @@ def init(window, world, images):
         gl.glTexParameteri(
             gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MIN_FILTER, gl.GL_NEAREST) 
 
-        for item, position, angle in items:
-            item.sprite.x = position.x
-            item.sprite.y = position.y
-            item.sprite.rot = angle * RADIANS_TO_DEGREES
-            item.sprite.render()
+        for item in world:
+            if hasattr(item, 'sprite'):
+                item.sprite.x = item.position.x
+                item.sprite.y = item.position.y
+                item.sprite.rot = item.angle * RADIANS_TO_DEGREES
+                item.sprite.render()
 
     return draw_sprites
 
