@@ -2,7 +2,7 @@ import sys
 
 import pyglet
 
-from .control import controllers, level
+from .control import update, level
 from .model.world import World
 from .options import create_parser
 from .view import window
@@ -13,7 +13,7 @@ def main():
     options = create_parser().parse_args(sys.argv[1:])
     world = World()
     win = window.init(world, options)
-    controllers.init(win, world)
+    update.init(win, world)
     level.start(world)
     pyglet.app.run()
 
