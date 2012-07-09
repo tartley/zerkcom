@@ -1,5 +1,8 @@
+- Rect should be function rect.create(), which returns a Shape
+  (a py2d polygon and color)
 - add visible walls
     - single Item, shape is multiple rectangles?
+- replace tank bitmap with copy of tank from 'Combat'
 - collision detection:
     - cheat on collision response: Invert (perp?) velocity & set pos = prev pos
 - camera zoom and aspect ratio compensation
