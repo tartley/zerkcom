@@ -19,13 +19,9 @@ def init(window, world, images):
         if hasattr(item, 'image'):
             item.sprite = get_sprite(item.image, images[item.image])
 
-    def on_item_removed(item):
-        pass
-
     world.item_added += on_item_added
-    world.item_removed += on_item_removed
 
-    def draw_sprites(items):
+    def draw_sprites():
         gl.glTexParameteri(
             gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MAG_FILTER, gl.GL_NEAREST) 
         gl.glTexParameteri(
