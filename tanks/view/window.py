@@ -23,7 +23,11 @@ def init(world, options):
     @window.event
     def on_draw():
         rabbyt.clear(rgba=CLEAR_COLOR_DEFAULT)
-        draw_sprites((item, item.position, item.angle) for item in world)
+        draw_sprites(
+            (item, item.position, item.angle)
+            for item in world
+            if hasattr(item, 'sprite')
+        )
 
     draw_sprites = sprite.init(window, world, load_all('data/images'))
 

@@ -24,7 +24,7 @@ def player_control(item, dt):
 
 def create():
     return Item(
-        sprite='tank',
+        image='tank',
         position=Vector(100, 20),
         angle=-math.pi / 2,
         keys=key.KeyStateHandler(),

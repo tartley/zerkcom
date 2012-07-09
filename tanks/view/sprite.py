@@ -16,7 +16,8 @@ def get_sprite(name, image):
 def init(window, world, images):
 
     def on_item_added(item):
-        item._sprite = get_sprite(item.sprite, images[item.sprite])
+        if hasattr(item, 'image'):
+            item.sprite = get_sprite(item.image, images[item.image])
 
     def on_item_removed(item):
         pass
@@ -31,10 +32,10 @@ def init(window, world, images):
             gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MIN_FILTER, gl.GL_NEAREST) 
 
         for item, position, angle in items:
-            item._sprite.x = position.x
-            item._sprite.y = position.y
-            item._sprite.rot = angle * RADIANS_TO_DEGREES
-            item._sprite.render()
+            item.sprite.x = position.x
+            item.sprite.y = position.y
+            item.sprite.rot = angle * RADIANS_TO_DEGREES
+            item.sprite.render()
 
     return draw_sprites
 
