@@ -26,7 +26,7 @@ def create():
     return Item(
         image='tank',
         position=Vector(-300, 0),
-        angle=-math.pi / 2,
+        angle=0.0,
         keys=key.KeyStateHandler(),
         update=player_control,
     )

@@ -1,7 +1,4 @@
-- Rect should be function rect.create(), which returns a Shape
-  (a py2d polygon and color)
-- add visible walls
-    - single Item, shape is multiple rectangles?
+- add visible walls - one Item per wall
 - replace tank bitmap with copy of tank from 'Combat'
 - collision detection:
     - cheat on collision response: Invert (perp?) velocity & set pos = prev pos
@@ -20,6 +17,7 @@
 - respawn the player
 - add sounds: fire, shoot wall, tank explode, tank drive
 - add score
+- consider optimising the render of walls into a single draw call
 
 
 speculative
@@ -55,4 +53,5 @@ done
         (particular to player-controlled tank)
 - Need a collection of controllers so that we can call each one (?) every frame.
 - start_game is another control
+- Rect should be function rect.create(), which returns a list of verts
 

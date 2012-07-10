@@ -8,6 +8,6 @@ SPEED = 2.0
 
 def update_tank(item, dt):
     item.angle += (item.speed_left - item.speed_right) * TURN_RATE
-    item.position += Vector(-sin(item.angle), cos(item.angle)) * \
+    item.position += Vector(cos(item.angle), sin(item.angle)) * \
         (item.speed_left + item.speed_right) * SPEED
 
