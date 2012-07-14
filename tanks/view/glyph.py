@@ -5,6 +5,7 @@ from OpenGL import GL
 from OpenGL.arrays import vbo
 
 from .shader import Shader
+from . import glwrap
 
 
 type_to_enum = {
@@ -27,13 +28,13 @@ def get_index_type(num_verts):
         return GL.GLuint
 
 
-def glarray(gltype, seq):
+def array(type_, seq):
     '''
-    Puts the given sequence into a ctypes array of gltypes.
+    Puts the given sequence into a ctypes array of the given ctype.
     [ 1, 2, 3, 4, 5, 6 ] -> (GLfloat*6)(1, 2, 3, 4, 5, 6)
     '''
-    # construct and populate [:] is faster than construct with *seq
-    carray = (gltype * len(seq))()
+    # construct then populate [:] is faster than constructing with *seq
+    carray = (type_ * len(seq))()
     carray[:] = seq
     return carray
 
@@ -47,16 +48,24 @@ class Glyph(object):
      # provided by whatever produced the vertex data
 
     def __init__(self, verts, indices, shader):
+        Glyph.shader = shader
+
+        verts = list(verts)
+        print verts
+
+        indices = list(indices)
+        print indices
+
         self.vbo = vbo.VBO(
-            glarray(GL.GLfloat, verts),
+            array(GL.GLfloat, verts),
             usage='GL_STATIC_DRAW',
         )
         FLOATS_PER_VERTEX = 6 # (x, y, r, g, b, a)
         index_type = get_index_type(len(verts) / FLOATS_PER_VERTEX)
-        self.glindices = glarray(index_type, indices)
+        self.glindices = array(index_type, indices)
         self.index_type = type_to_enum[index_type]
-        self.vao = GL.glGenVertexArrays(1)
-        GL.blBindVertexArray(self.vao)
+        self.vao = glwrap.glGenVertexArray()
+        glwrap.glBindVertexArray(self.vao)
         try:
             self.vbo.bind()
 
@@ -75,7 +84,7 @@ class Glyph(object):
                 False, STRIDE, ctypes.c_void_p(12)
             )
         finally:
-            GL.glBindVertexArray(0)
+            glwrap.glBindVertexArray(0)
 
 
 def _tessellate(indices):
@@ -116,7 +125,7 @@ def get_vertices(polys):
 def get_indices(polys):
     return get_verts_or_indices(polys, indices=True)
 
-def get_glyph(polys, shader):
+def get_glyph(positions, shader):
     '''
     input is
     [
@@ -138,7 +147,11 @@ def get_glyph(polys, shader):
         Type of index array might be ubyte, ushort, uint, depending on number
         of indices,
     '''
-    return Glyph(get_vertices(polys), get_indices(polys), shader)
+    polys = [((1, 0, 0, 1), positions)]
+    return Glyph(
+        list(itertools.chain.from_iterable(get_vertices(polys))),
+        get_indices(polys),
+        shader)
 
 
 def init(window, world):
@@ -146,13 +159,41 @@ def init(window, world):
     shader = Shader()
 
     def on_item_added(item):
-        if hasattr(item, 'verts'):
-            item.glyph = get_glyph(item.verts, shader)
+        if hasattr(item, 'shape'):
+            item.glyph = get_glyph(item.shape, shader)
+
+    world.item_added += on_item_added
 
     def draw_glyphs():
+        shader = None
         for item in world:
             if hasattr(item, 'glyph'):
-                pass # TODO
+
+                GL.glPushMatrix()
+
+                #if hasattr(item, 'position'):
+                    #GL.glTranslatef(*item.position)
+
+                #if orientation and orientation != Orientation.Identity:
+                    #GL.glMultMatrixf(orientation.matrix)
+
+                if item.glyph.shader is not shader:
+                    shader = item.glyph.shader
+                    shader.use()
+
+                glwrap.glBindVertexArray(item.glyph.vao)
+
+                GL.glDrawElements(
+                    GL.GL_TRIANGLES,
+                    len(item.glyph.glindices),
+                    item.glyph.index_type,
+                    item.glyph.glindices
+                )
+
+                GL.glPopMatrix()
+
+        glwrap.glBindVertexArray(0)
+        Shader.unuse()
 
     return draw_glyphs
 

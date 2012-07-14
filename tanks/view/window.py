@@ -26,7 +26,7 @@ def init(world, options):
     @window.event
     def on_draw():
         rabbyt.clear(rgba=CLEAR_COLOR_DEFAULT)
-        rabbyt.set_viewport((window.width, window.height), (800, 600))
+        rabbyt.set_viewport((window.width, window.height), (800, -600))
         draw_glyphs()
         draw_sprites()
 
