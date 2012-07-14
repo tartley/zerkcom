@@ -1,4 +1,3 @@
-import math
 from py2d.Math import Vector
 from pyglet.window import key
 

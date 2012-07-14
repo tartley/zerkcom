@@ -1,3 +1,51 @@
+- Big insight: for glyphs, either 2D or 3D, specifying indices is not required
+  on the input, just colors and loops of positions.
+
+    Idea of specifying indices is to let the shape design share a vertex
+    between one poly and another.
+    
+    In polyhedra, this never happens, because although corners is re-used
+    by all adjacent faces, the normals are different, so separate vertices for
+    each face are required.
+
+    The only vertex reuse comes in due to tesselating individual faces into
+    triangles - and this step can be done automatically during Glyph
+    construction.
+
+    In 3D patches (curved surfaces) then we do share normals, but I don't
+    plan on supporting these, and even if I was, I'm far from certain what
+    the best input format should be.
+
+    In 2d polygons, vertices are:
+      - Not re-used within a single polygon (except by tesselation)
+      - Not re-used by different polygons of different colors, because
+            colors differ betwen vertices
+      - Might be re-used if different polygons of the same color touch
+        each other. e.g. two triangles in a butterfly. Is this common?
+
+        Is the efficiency of catering to this case worth the cost of
+        complicating input for all cases? Can this re-use be automatically
+        detected by comparing if the vertex position equal to any used before?
+        I think it can.
+
+    But does that actually put a burden on the shape designer, to re-specify
+    the same positions over and over? I don't *think* so.
+
+    So input goes from:
+
+        [p1, p2, p3...]
+        [
+            (color, [i1, i2, i3...])
+            ...
+        ]
+
+    To:
+
+        [
+            (color, [p1, p2, p3...])
+            ...
+        ]
+
 - add visible walls - one Item per wall
 - replace tank bitmap with copy of tank from 'Combat'
 - collision detection:
