@@ -5,7 +5,7 @@
 
 
 test:
-	python -m unittest discover -p '*test.py'
+	python -m unittest discover
 .PHONY: test
 
 pylint:
