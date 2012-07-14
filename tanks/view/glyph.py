@@ -49,13 +49,6 @@ class Glyph(object):
 
     def __init__(self, verts, indices, shader):
         Glyph.shader = shader
-
-        verts = list(verts)
-        print verts
-
-        indices = list(indices)
-        print indices
-
         self.vbo = vbo.VBO(
             array(GL.GLfloat, verts),
             usage='GL_STATIC_DRAW',
@@ -75,13 +68,15 @@ class Glyph(object):
             STRIDE = FLOATS_PER_VERTEX * ctypes.sizeof(GL.GLfloat)
             FLOATS_PER_POSITION = 2
             FLOATS_PER_COLOR = 4
+            offset = 0
             GL.glVertexAttribPointer(
                 shader.attrib['position'], FLOATS_PER_POSITION, GL.GL_FLOAT,
-                False, STRIDE, ctypes.c_void_p(0)
+                False, STRIDE, ctypes.c_void_p(offset)
             )
+            offset += FLOATS_PER_POSITION * ctypes.sizeof(GL.GLfloat)
             GL.glVertexAttribPointer(
                 shader.attrib['color'], FLOATS_PER_COLOR, GL.GL_FLOAT,
-                False, STRIDE, ctypes.c_void_p(12)
+                False, STRIDE, ctypes.c_void_p(offset)
             )
         finally:
             glwrap.glBindVertexArray(0)
