@@ -13,9 +13,9 @@ def player_control(item, dt):
         item.speed_left -= 1
 
     item.speed_right = 0
-    if item.keys[key.P]:
+    if item.keys[key.W]:
         item.speed_right += 1
-    if item.keys[key.L]:
+    if item.keys[key.S]:
         item.speed_right -= 1
     
     update_tank(item, dt)
