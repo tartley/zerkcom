@@ -1,3 +1,54 @@
+- camera zoom and aspect ratio compensation
+- word.add can update attributes to the item, use this to set player
+  position and angle on insertion
+- collision detection
+- cheat on collision response: Invert (perp?) velocity & set pos = prev pos
+- control for standard application controls (fullscreen, vsync, fps)
+- add cursor keys too
+- add start game screen
+- collision doesn't include tank turret
+- tank can fire
+- enemy tanks exist
+- shots destroy tanks
+    - respawn in furthest spot
+- explosion when shot hits anything
+- add sounds: fire, shoot wall, tank explode, tank drive
+- add score
+
+speculative
+-----------
+- tank treads:
+    - model may be 'attached to' another model. view collection stores this
+      as a tree, so that matrices can be applied cumulatively. Or maybe each
+      item has an 'items' collection, just like the world.
+    - or just pre-create all possible combinations of left/right tread posns.
+- consider optimising the render of walls into a single draw call
+
+done
+====
+- Add 'player' item, with sprite image name
+- world sends 'add item' signal
+- view converts image name into sprite
+- move png to data dir
+- test data dir on installed package
+- resource manager loads all images files at startup, makes accessible by name
+- try some transparent pixels
+- try rendering with nearest-neighbour
+- player position & rotation is used to render sprite
+- Try lepton instead:
+  pyglet sprites are (a) integer co-ord only, which looks bad for very slow
+  moving or rotating sprites, especially small ones. (b) creates new ctypes
+  array of sprite positions to send to GPU after each move and after each
+  rotation. Ultradumb.
+- model update methods are actually controllers:
+- Consider ordering calls to controllers (e.g. update positions first)
+    - control which converts tank state to tank velocity
+        (particular to tanks)
+    - control which processes player input, converts keys to tank states
+        (particular to player-controlled tank)
+- Need a collection of controllers so that we can call each one (?) every frame.
+- start_game is another control
+- Rect should be function rect.create(), which returns a list of verts
 - Big insight: for glyphs, either 2D or 3D, specifying indices is not required
   on the input, just colors and loops of positions.
 
@@ -45,61 +96,12 @@
             (color, [p1, p2, p3...])
             ...
         ]
-
-- add visible walls - one Item per wall
 - replace tank bitmap with copy of tank from 'Combat'
-- collision detection:
-    - cheat on collision response: Invert (perp?) velocity & set pos = prev pos
-- camera zoom and aspect ratio compensation
-- control for standard application controls (fullscreen, vsync, fps)
-- add start game screen
-- tank treads:
-    - model may be 'attached to' another model. view collection stores this
-      as a tree, so that matrices can be applied cumulatively. Or maybe each
-      item has an 'items' collection, just like the world.
-- tank turret
-- tank can fire
-- explosion
-- enemy tanks
-- shots destroy tanks
-- respawn the player
-- add sounds: fire, shoot wall, tank explode, tank drive
-- add score
-- consider optimising the render of walls into a single draw call
-
-
-speculative
-===========
-- Beware of controllers that reference a model which has been removed
-- world provides .items('aspect') which returns set of items filtered by
-  those that have given attribute. (this instead of filtered by class as
-  done in SinisterDucks.)
-- instead of nearest neighbour, don't scale the bitmap, and use linear.
-  Provides a blocky look, but still AA the edges between blocks.
-
-done
-====
-- Add 'player' item, with sprite image name
-- world sends 'add item' signal
-- view converts image name into sprite
-- move png to data dir
-- test data dir on installed package
-- resource manager loads all images files at startup, makes accessible by name
-- try some transparent pixels
-- try rendering with nearest-neighbour
-- player position & rotation is used to render sprite
-- Try lepton instead:
-  pyglet sprites are (a) integer co-ord only, which looks bad for very slow
-  moving or rotating sprites, especially small ones. (b) creates new ctypes
-  array of sprite positions to send to GPU after each move and after each
-  rotation. Ultradumb.
-- model update methods are actually controllers:
-- Consider ordering calls to controllers (e.g. update positions first)
-    - control which converts tank state to tank velocity
-        (particular to tanks)
-    - control which processes player input, converts keys to tank states
-        (particular to player-controlled tank)
-- Need a collection of controllers so that we can call each one (?) every frame.
-- start_game is another control
-- Rect should be function rect.create(), which returns a list of verts
+- add visible walls - one Item per wall
+    ATARIVCS: 4:3 screen, court 642 x 480, in 16x16 squares, gives 40x30
+    16:10 screen: height into 30 gives width of 48
+    screens commonly:
+        4:3, e.g. 800x600
+        16:10, e.g. 1680x1050 (my mac)
+        16:9, e.g. ?
 
