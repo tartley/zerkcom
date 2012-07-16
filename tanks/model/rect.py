@@ -1,9 +1,7 @@
 
 def create(left, bottom, right, top):
-    left = min(left, right)
-    right = max(left, right)
-    bottom = min(bottom, top)
-    top = max(bottom, top)
+    left, right = sorted([left, right])
+    bottom, top = sorted([bottom, top])
     return [
         (left, bottom),
         (left, top),

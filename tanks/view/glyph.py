@@ -3,6 +3,7 @@ import itertools
 
 from OpenGL import GL
 from OpenGL.arrays import vbo
+import py2d
 
 from .shader import Shader
 from . import glwrap
@@ -142,6 +143,10 @@ def get_glyph(positions, shader):
         Type of index array might be ubyte, ushort, uint, depending on number
         of indices,
     '''
+    polygon = py2d.Math.Polygon.from_tuples(positions)
+    assert polygon.is_convex(), positions
+    assert not polygon.is_clockwise(), positions
+
     polys = [((1, 0, 0, 1), positions)]
     return Glyph(
         list(itertools.chain.from_iterable(get_vertices(polys))),
