@@ -29,8 +29,6 @@ def start(world):
         n *= 16
         world.add(wall.create(w, s, e, n))
 
-
-    world.add
     world.add(
         player.create(),
     )
