@@ -1,5 +1,3 @@
-from py2d.Math import Vector
-
 from . import player
 from . import wall
 
@@ -35,7 +33,5 @@ def start(world):
     world.add
     world.add(
         player.create(),
-        position=Vector(-300, 0),
-        angle=0.0,
     )
 
