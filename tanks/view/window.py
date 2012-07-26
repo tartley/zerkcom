@@ -7,7 +7,8 @@ from . import glyph
 
 
 CLEAR_COLOR_DEFAULT = (0.1, 0.3, 0.2)
-
+HUD_HEIGHT = 32
+WORLD_BOUNDS = (-24 * 16, -14 * 16, 24 * 16, 14 * 16)
 
 def init(world, options):
 
@@ -26,7 +27,10 @@ def init(world, options):
     @window.event
     def on_draw():
         rabbyt.clear(rgba=CLEAR_COLOR_DEFAULT)
-        rabbyt.set_viewport((window.width, window.height), (800, -600))
+        rabbyt.set_viewport(
+            (0, 0, window.width, window.height - HUD_HEIGHT),
+            WORLD_BOUNDS
+        )
         draw_glyphs()
         draw_sprites()
 
