@@ -23,11 +23,7 @@ def start(world):
         (-1, -10, +1, -6), # bottom island
         (-1, +6, +1, +10), # top island
     ]:
-        w *= 16
-        s *= 16
-        e *= 16
-        n *= 16
-        world.add(wall.create(w, s, e, n))
+        world.add(wall.create(w * 16, s * 16, e * 16, n * 16))
 
     world.add(
         player.create(),
