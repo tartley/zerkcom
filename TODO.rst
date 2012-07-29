@@ -1,4 +1,12 @@
 - camera zoom and aspect ratio compensation
+    ATARIVCS: 4:3 screen, court 642 x 480, in 16x16 squares, gives 40x30
+    16:10 screen: height into 30 gives width of 48
+    screens commonly:
+        4:3, e.g. 800x600
+        16:10, e.g. 1680x1050 (my mac)
+        16:9, e.g. ?
+- choose proper colors. pass them in from level construct. incorporate
+  colortuple package.
 - word.add can update attributes to the item, use this to set player
   position and angle on insertion
 - collision detection
@@ -10,10 +18,14 @@
 - tank can fire
 - enemy tanks exist
 - shots destroy tanks
-    - respawn in furthest spot
+    - respawn in furthest spawn point
+    - leave old broken tank behind?
 - explosion when shot hits anything
 - add sounds: fire, shoot wall, tank explode, tank drive
 - add score
+- juice: zoom/fade in at start
+- juice: tanks spawn with an effect
+- key to reset tank positions and scores to zero
 
 speculative
 -----------
@@ -98,10 +110,4 @@ done
         ]
 - replace tank bitmap with copy of tank from 'Combat'
 - add visible walls - one Item per wall
-    ATARIVCS: 4:3 screen, court 642 x 480, in 16x16 squares, gives 40x30
-    16:10 screen: height into 30 gives width of 48
-    screens commonly:
-        4:3, e.g. 800x600
-        16:10, e.g. 1680x1050 (my mac)
-        16:9, e.g. ?
 

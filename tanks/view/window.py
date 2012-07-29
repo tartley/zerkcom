@@ -1,3 +1,5 @@
+from __future__ import division
+
 import pyglet
 import rabbyt
 
@@ -7,8 +9,25 @@ from . import glyph
 
 
 CLEAR_COLOR_DEFAULT = (0.1, 0.3, 0.2)
-HUD_HEIGHT = 32
 WORLD_BOUNDS = (-24 * 16, -14 * 16, 24 * 16, 14 * 16)
+VIEWPORT_ASPECT = 48 / 30
+
+
+def get_viewport(win_width, win_height):
+    win_aspect = win_width / win_height
+    width, height = win_width, win_height
+    if win_aspect < VIEWPORT_ASPECT:
+        # window too tall
+        height *= win_aspect / VIEWPORT_ASPECT
+    else:
+        # window too wide
+        width /= win_aspect / VIEWPORT_ASPECT
+
+    return (
+        (win_width - width) / 2, (win_height - height) / 2,
+        (win_width + width) / 2, (win_height + height) / 2
+    )
+
 
 def init(world, options):
 
@@ -28,7 +47,7 @@ def init(world, options):
     def on_draw():
         rabbyt.clear(rgba=CLEAR_COLOR_DEFAULT)
         rabbyt.set_viewport(
-            (0, 0, window.width, window.height - HUD_HEIGHT),
+            get_viewport(window.width, window.height),
             WORLD_BOUNDS
         )
         draw_glyphs()
