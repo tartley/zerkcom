@@ -11,21 +11,24 @@ from . import glyph
 CLEAR_COLOR_DEFAULT = (0.1, 0.3, 0.2)
 WORLD_BOUNDS = (-24 * 16, -14 * 16, 24 * 16, 14 * 16)
 VIEWPORT_ASPECT = 48 / 30
+HUD_SIZE = 2 / 30
 
 
 def get_viewport(win_width, win_height):
     win_aspect = win_width / win_height
     width, height = win_width, win_height
     if win_aspect < VIEWPORT_ASPECT:
-        # window too tall
+        # window is too tall
         height *= win_aspect / VIEWPORT_ASPECT
     else:
-        # window too wide
+        # window is too wide
         width /= win_aspect / VIEWPORT_ASPECT
+
+    hud_height = height * HUD_SIZE
 
     return (
         (win_width - width) / 2, (win_height - height) / 2,
-        (win_width + width) / 2, (win_height + height) / 2
+        (win_width + width) / 2, (win_height + height) / 2 - hud_height
     )
 
 
