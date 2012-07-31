@@ -1,28 +1,32 @@
 from pyglet.window import key
 
 from ..model.item import Item
-from .tank import update_tank
+from . import tank
 
 
-def player_control(item, dt):
-    item.speed_left = 0
-    if item.keys[key.Q]:
-        item.speed_left += 1
-    if item.keys[key.A]:
-        item.speed_left -= 1
-    item.speed_right = 0
-    if item.keys[key.W]:
-        item.speed_right += 1
-    if item.keys[key.S]:
-        item.speed_right -= 1
-    
-    update_tank(item, dt)
+def _tread_controls(keys):
+    left = 0
+    if keys[key.Q]:
+        left += 1
+    if keys[key.A]:
+        left -= 1
+    right = 0
+    if keys[key.W]:
+        right += 1
+    if keys[key.S]:
+        right -= 1
+    return tank.Inputs(left, right)
+
+
+
+def update(item, dt):
+    tank.update(item, _tread_controls(item.keys), dt)
 
 
 def create():
     return Item(
         image='tank',
         keys=key.KeyStateHandler(),
-        update=player_control,
+        update=update,
     )
 

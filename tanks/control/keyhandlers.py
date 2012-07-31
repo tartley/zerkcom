@@ -1,5 +1,4 @@
 
-
 def init(window, world):
 
     def on_item_added(item):
