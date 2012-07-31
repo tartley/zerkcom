@@ -9,7 +9,7 @@ RADIANS_TO_DEGREES = 360.0 / (math.pi * 2)
 
 def get_sprite(name, image):
     sprite = rabbyt.Sprite(image)
-    sprite.scale = 6
+    sprite.scale = 4
     return sprite
 
 

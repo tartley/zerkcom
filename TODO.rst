@@ -1,22 +1,31 @@
 - word.add can update attributes to the item, use this to set player
   position and angle on insertion
+- glyph should use index array
+- I think attributes of glyph class are no longer required. Can we remove the
+  class and use a function which returns VAO id?
+- refactor glyph.create function
+- add sound: tank drive
 - collision detection
+    - player needs a collision rect defining
 - cheat on collision response: Invert (perp?) velocity & set pos = prev pos
 - control for standard application controls (fullscreen, vsync, fps)
 - add cursor keys too
-- add start game screen
-- collision doesn't include tank turret
 - tank can fire
+    - firing sound effect
+- explosion when shot hits anything
 - enemy tanks exist
 - shots destroy tanks
+    - destroy animation
+    - destroy sound effect
     - respawn in furthest spawn point
     - leave old broken tank behind?
-- explosion when shot hits anything
-- add sounds: fire, shoot wall, tank explode, tank drive
+- add start game screen
 - add score
 - juice: zoom/fade in at start
-- juice: tanks spawn with an effect
+- juice: tank spawn effect
 - key to reset tank positions and scores to zero
+    - advertise on start screen
+
 
 speculative
 -----------
