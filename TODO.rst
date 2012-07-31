@@ -1,5 +1,4 @@
-- word.add can update attributes to the item, use this to set player
-  position and angle on insertion
+- add cursor keys too
 - glyph should use index array
 - I think attributes of glyph class are no longer required. Can we remove the
   class and use a function which returns VAO id?
@@ -9,7 +8,6 @@
     - player needs a collision rect defining
 - cheat on collision response: Invert (perp?) velocity & set pos = prev pos
 - control for standard application controls (fullscreen, vsync, fps)
-- add cursor keys too
 - tank can fire
     - firing sound effect
 - explosion when shot hits anything
@@ -118,4 +116,6 @@ done
         16:9, e.g. ?
 - choose proper colors. pass them in from level construct. incorporate
   colortuple package.
+- word.add can update attributes to the item, use this to set player
+  position and angle on insertion
 

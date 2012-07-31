@@ -1,4 +1,5 @@
 from colortuple import Color
+from py2d.Math import Vector
 
 from . import player
 from . import wall
@@ -32,5 +33,7 @@ def start(world):
 
     world.add(
         player.create(),
+        position=Vector(-325, 0),
+        angle=0.0,
     )
 

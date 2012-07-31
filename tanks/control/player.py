@@ -1,4 +1,3 @@
-from py2d.Math import Vector
 from pyglet.window import key
 
 from ..model.item import Item
@@ -11,7 +10,6 @@ def player_control(item, dt):
         item.speed_left += 1
     if item.keys[key.A]:
         item.speed_left -= 1
-
     item.speed_right = 0
     if item.keys[key.W]:
         item.speed_right += 1
@@ -26,7 +24,5 @@ def create():
         image='tank',
         keys=key.KeyStateHandler(),
         update=player_control,
-        position=Vector(-325, 0),
-        angle=0.0,
     )
 

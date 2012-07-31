@@ -1,4 +1,3 @@
-
 from .event import Event
 
 
@@ -12,7 +11,9 @@ class World(object):
     def __iter__(self):
         return iter(self.items)
 
-    def add(self, item, position=None):
+    def add(self, item, **kwargs):
+        for name, value in kwargs.iteritems():
+            setattr(item, name, value)
         self.items.add(item)
         self.item_added(item)
 
