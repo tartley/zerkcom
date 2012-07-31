@@ -2,8 +2,8 @@ from ..model import rect
 from ..model.item import Item
 
 
-def create(xmin, ymin, xmax, ymax):
+def create(xmin, ymin, xmax, ymax, color):
     return Item(
-        shape=rect.create(xmin, ymin, xmax, ymax),
+        shape=(color, rect.create(xmin, ymin, xmax, ymax)),
     )
 

@@ -1,12 +1,3 @@
-- camera zoom and aspect ratio compensation
-    ATARIVCS: 4:3 screen, court 642 x 480, in 16x16 squares, gives 40x30
-    16:10 screen: height into 30 gives width of 48
-    screens commonly:
-        4:3, e.g. 800x600
-        16:10, e.g. 1680x1050 (my mac)
-        16:9, e.g. ?
-- choose proper colors. pass them in from level construct. incorporate
-  colortuple package.
 - word.add can update attributes to the item, use this to set player
   position and angle on insertion
 - collision detection
@@ -110,4 +101,12 @@ done
         ]
 - replace tank bitmap with copy of tank from 'Combat'
 - add visible walls - one Item per wall
+- camera zoom and aspect ratio compensation
+    ATARIVCS: 4:3 screen, court 642 x 480, in 16x16 squares, gives 40x30
+    screens commonly:
+        4:3, e.g. 800x600
+        16:10, e.g. 1680x1050 (my mac), height into 30 gives width of 48
+        16:9, e.g. ?
+- choose proper colors. pass them in from level construct. incorporate
+  colortuple package.
 

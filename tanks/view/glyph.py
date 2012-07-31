@@ -121,16 +121,15 @@ def get_vertices(polys):
 def get_indices(polys):
     return get_verts_or_indices(polys, indices=True)
 
-def get_glyph(positions, shader):
+def get_glyph(shape, shader):
     '''
-    input is
-    [
-        (color, [position, position, position...]),
-        ...
-    ]
+    input is:
+        'shape' is (color, [position, position, position...])
+        'shader' is an instance of the 'Shader' class
     where:
-        color = 4 tuple
-        position = 2 tuple
+        color = RGBA 4-tuple, or Color namedtuple
+        position = XY 2-tuple
+
     output is:
         (
             GL.GLfloat(V)(vertex, vertex, vertex...),
@@ -143,14 +142,15 @@ def get_glyph(positions, shader):
         Type of index array might be ubyte, ushort, uint, depending on number
         of indices,
     '''
+    _, positions = shape
     polygon = py2d.Math.Polygon.from_tuples(positions)
     assert polygon.is_convex(), positions
     assert not polygon.is_clockwise(), positions
 
-    polys = [((1, 0, 0, 1), positions)]
+    shapes = [shape]
     return Glyph(
-        list(itertools.chain.from_iterable(get_vertices(polys))),
-        get_indices(polys),
+        list(itertools.chain.from_iterable(get_vertices(shapes))),
+        get_indices(shapes),
         shader)
 
 

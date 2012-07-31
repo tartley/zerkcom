@@ -1,5 +1,6 @@
 PyOpenGL==3.0.2a5
 Rabbyt=0.8.3
+colortuple==1.0.0rc1
 py2d==0.1
 pyglet=1.2alpha1
 

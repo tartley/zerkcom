@@ -1,3 +1,5 @@
+from colortuple import Color
+
 from . import player
 from . import wall
 
@@ -23,7 +25,9 @@ def start(world):
         (-1, -10, +1, -6), # bottom island
         (-1, +6, +1, +10), # top island
     ]:
-        world.add(wall.create(w * 16, s * 16, e * 16, n * 16))
+        world.add(
+            wall.create(w * 16, s * 16, e * 16, n * 16, Color(0.1, 0.6, 0.3))
+        )
 
     world.add(
         player.create(),
