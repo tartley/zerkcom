@@ -5,22 +5,37 @@ from . import tank
 
 
 def _tread_controls(keys):
-    left = 0
-    if keys[key.Q]:
-        left += 1
-    if keys[key.A]:
-        left -= 1
-    right = 0
-    if keys[key.W]:
-        right += 1
-    if keys[key.S]:
-        right -= 1
+    left = 1 * keys[key.Q] - 1 * keys[key.A]
+    right = 1 * keys[key.W] - 1 * keys[key.S]
     return tank.Inputs(left, right)
 
 
+def _cursor_controls(keys):
+    direction = 1 * keys[key.UP] - 1 * keys[key.DOWN]
+    left = right = 0
+    inner = -1 * (direction != +1)
+    outer = +1 * (direction != -1)
+    if keys[key.LEFT]:
+        left += inner
+        right += outer
+    elif keys[key.RIGHT]:
+        left += outer
+        right += inner
+    else:
+        left = right = direction
+
+    return tank.Inputs(left, right)
+
+
+def _key_controls(keys):
+    inputs = _tread_controls(keys)
+    if inputs == (0, 0):
+        inputs = _cursor_controls(keys)
+    return inputs
+
 
 def update(item, dt):
-    tank.update(item, _tread_controls(item.keys), dt)
+    tank.update(item, _key_controls(item.keys), dt)
 
 
 def create():
