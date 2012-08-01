@@ -12,15 +12,15 @@ def _tread_controls(keys):
 
 def _cursor_controls(keys):
     direction = 1 * keys[key.UP] - 1 * keys[key.DOWN]
-    inner = -1 * (direction != +1)
-    outer = +1 * (direction != -1)
+    forward = +1 * (direction != -1)
+    reverse = -1 * (direction != +1)
     left = right = 0
     if keys[key.LEFT]:
-        left += inner
-        right += outer
+        left += reverse
+        right += forward
     if keys[key.RIGHT]:
-        left += outer
-        right += inner
+        left += forward
+        right += reverse
     if not (keys[key.LEFT] or keys[key.RIGHT]):
         left = right = direction
 
