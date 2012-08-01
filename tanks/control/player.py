@@ -12,16 +12,16 @@ def _tread_controls(keys):
 
 def _cursor_controls(keys):
     direction = 1 * keys[key.UP] - 1 * keys[key.DOWN]
-    left = right = 0
     inner = -1 * (direction != +1)
     outer = +1 * (direction != -1)
+    left = right = 0
     if keys[key.LEFT]:
         left += inner
         right += outer
-    elif keys[key.RIGHT]:
+    if keys[key.RIGHT]:
         left += outer
         right += inner
-    else:
+    if not (keys[key.LEFT] or keys[key.RIGHT]):
         left = right = direction
 
     return tank.Inputs(left, right)
@@ -35,7 +35,7 @@ def _key_controls(keys):
 
 
 def update(item, dt):
-    tank.update(item, _key_controls(item.keys), dt)
+    tank.update(item, dt, _key_controls(item.keys))
 
 
 def create():

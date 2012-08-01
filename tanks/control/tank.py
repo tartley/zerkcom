@@ -11,7 +11,7 @@ SPEED = 2.0
 Inputs = namedtuple('Inputs', ['left_tread', 'right_tread'])
 
 
-def update(item, controls, dt):
+def update(item, dt, controls):
     item.angle += (controls.left_tread - controls.right_tread) * TURN_RATE
     item.position += Vector(cos(item.angle), sin(item.angle)) * \
         (controls.left_tread + controls.right_tread) * SPEED
