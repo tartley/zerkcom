@@ -67,7 +67,7 @@ def get_data_files(dest, source):
 
 
 def get_sdist_config(data_dir):
-    description, long_description = read_description('README')
+    description, long_description = read_description('README.rst')
 
     install_requires = []
     if sys.version_info < (2, 7):
