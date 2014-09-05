@@ -1,6 +1,6 @@
 import unittest
 
-from tanks.view.glyph import get_indices, get_vertices
+from zerkcom.view.glyph import get_indices, get_vertices
 
 
 class ShapeToGlyphTest(unittest.TestCase):

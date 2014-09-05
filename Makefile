@@ -29,6 +29,8 @@ deps:
 	which pip ; \
 	virtualenvwrapper_verify_active_environment ; \
 	# To find GL/gl.h & GL/glu.h
+	# This step works if zerkcom virtualenv is active when running 'make deps'
+	# but fails otherwise with 
 	CFLAGS='-I/usr/include' \
 	  pip install \
 	    -r requirements.txt \

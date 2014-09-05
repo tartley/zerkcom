@@ -1,29 +1,39 @@
-- add cursor keys too
-- glyph should use index array
-- I think attributes of glyph class are no longer required. Can we remove the
-  class and use a function which returns VAO id?
-- refactor glyph.create function
-- add sound: tank drive
-- collision detection
-    - player needs a collision rect defining
-- cheat on collision response: Invert (perp?) velocity & set pos = prev pos
-- control for standard application controls (fullscreen, vsync, fps)
-- tank can fire
-    - firing sound effect
-- explosion when shot hits anything
-- enemy tanks exist
-- shots destroy tanks
-    - destroy animation
-    - destroy sound effect
-    - respawn in furthest spawn point
-    - leave old broken tank behind?
-- add start game screen
-- add score
-- juice: zoom/fade in at start
-- juice: tank spawn effect
-- key to reset tank positions and scores to zero
-    - advertise on start screen
-
+- Convert Rabbyt to lib2d https://bitbucket.org/jlm/lib2d/src
+- 'make deps' fails if virtualenv isn't active beforehand.
+    Because 'python setup.py Pyrex' is using python3 for reasons unk.
+- Convert to Python3.
+- Create Windows binary.
+- Create Linux binary.
+- Refactor ports'n'adaptors style.
+    - glyph should use index array
+    - I think attributes of glyph class are no longer required. Can we remove the
+      class and use a function which returns VAO id?
+    - refactor glyph.create function
+- Screen outside the arena is black
+- Finish the game as Atari VCS Combat.
+    - add sound: tank drive
+    - collision detection
+        - player needs a collision rect defining
+    - cheat on collision response: Invert (perp?) velocity & set pos = prev pos
+    - control for standard application controls (fullscreen, vsync, fps)
+    - tank can fire
+        - firing sound effect
+    - explosion when shot hits anything
+    - enemy tanks exist
+    - shots destroy tanks
+        - destroy animation
+        - destroy sound effect
+        - respawn in furthest spawn point
+        - leave old broken tank behind?
+    - add start game screen
+    - add score
+- Juice & twist.
+    - zoom/fade in at start
+    - spawn effect
+    - key to reset tank positions and scores to zero
+        - advertise on start screen (& during inactivity)
+    - key to toggle fullscreen 
+        - advertise on start screen
 
 speculative
 -----------
@@ -32,7 +42,7 @@ speculative
       as a tree, so that matrices can be applied cumulatively. Or maybe each
       item has an 'items' collection, just like the world.
     - or just pre-create all possible combinations of left/right tread posns.
-- consider optimising the render of walls into a single draw call
+- optimise the render of walls into a single draw call
 
 done
 ====
@@ -118,4 +128,8 @@ done
   colortuple package.
 - word.add can update attributes to the item, use this to set player
   position and angle on insertion
+- add cursor keys too
+
+- Move to github.
+- Resurrect: See it run again.
 

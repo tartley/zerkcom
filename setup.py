@@ -14,7 +14,7 @@ from setuptools import setup, find_packages
 # import setup.py before our dependencies have been installed)
 
 
-NAME = 'tanks'
+NAME = 'zerkcom'
 
 INSTALL_REQUIRES = [
     'colortuple==1.0.2',

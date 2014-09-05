@@ -4,11 +4,11 @@ from mock import call, Mock, patch
 
 from ..main import main
 
-MODULE_UNDER_TEST = 'tanks.main.'
+MODULE_UNDER_TEST = 'zerkcom.main.'
 
 class MainTest(TestCase):
 
-    @patch(MODULE_UNDER_TEST + 'sys.argv', ['tanks', 'arg'])
+    @patch(MODULE_UNDER_TEST + 'sys.argv', ['zerkcom', 'arg'])
     @patch(MODULE_UNDER_TEST + 'create_parser')
     @patch(MODULE_UNDER_TEST + 'pyglet', Mock())
     def test_main(

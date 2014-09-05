@@ -27,8 +27,8 @@ def call_process(command, expected_out='', expected_err=''):
 class CommandLineArgsTest(TestCase):
 
     def test_help(self):
-        call_process('tanks --help', ['usage:', 'tanks version '])
+        call_process('zerkcom --help', ['usage:', 'zerkcom version '])
 
     def test_version(self):
-        call_process('tanks --version', expected_err=['tanks version '])
+        call_process('zerkcom --version', expected_err=['zerkcom version '])
 
