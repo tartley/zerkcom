@@ -38,7 +38,7 @@ def init(world, options):
         fullscreen=options.fullscreen,
         vsync=options.vsync,
         resizable=not options.fullscreen,
-        caption='Tanks',
+        caption='Zerkcom',
     )
 
     rabbyt.set_default_attribs()
