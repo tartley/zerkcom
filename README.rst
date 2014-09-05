@@ -1,8 +1,8 @@
-Tanks
-=====
+Zerkcom
+=======
 
-A remake of the tanks from Atari 2600 Combat.
-Status: unfinished
+A retro videogame mashup of Atari 2600 Combat tanks and Bezerk.
+Status: Displays moving tanks, but isn't a game yet.
 
 Description
 -----------
@@ -29,10 +29,29 @@ For programmers::
 
 For real people:  Wait for 'double-click to run' binaries, not available yet.
 
+To Do
+-----
+[done] Move to github.
+[in progress] Resurrect: See it run again.
+    Currently failing to install Rabbyt.
+    Needs to compile against OpenGL headers.
+    They are installed, but not found by compiler.
+    Set env vars?
+    See 'make deps'
+[todo] Convert Rabbyt to https://bitbucket.org/jlm/lib2d/src
+[todo] Convert to Python3.
+[todo] Create Windows binary.
+[todo] Create Linux binary.
+[todo] Refactor ports'n'adaptors style.
+[todo] Screen outside the arena is black
+[todo] Finish the game as Atari VCS Combat.
+[todo] Juice & twist.
+
 Known Problems
 --------------
 
-Still in progress.
+Nothing works yet.
+
 
 Hacking
 -------

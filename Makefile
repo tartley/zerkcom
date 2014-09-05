@@ -3,6 +3,9 @@
 # on the PATH, or on Ubuntu, or on WindowsXP/7 with Cygwin binaries foremost on
 # the PATH.
 
+SHELL=/bin/bash
+
+# Development
 
 test:
 	python -m unittest discover
@@ -16,10 +19,30 @@ tags:
 	ctags -R --languages=python .
 .PHONY: tags
 
+deps:
+	# on Ubuntu 14.04
+	# For Rabbyt, install OpenGL header files GL/gl.h & GL/glu.h
+	sudo apt-get install mesa-common-dev freeglut3-dev
+	. ~/.bashrc.virtualenvwrapper ; \
+	rmvirtualenv zerkcom ; \
+	mkvirtualenv -p `which python2.7` zerkcom ; \
+	which pip ; \
+	virtualenvwrapper_verify_active_environment ; \
+	# To find GL/gl.h & GL/glu.h
+	CFLAGS='-I/usr/include' \
+	  pip install \
+	    -r requirements.txt \
+	    --find-links pypackages/ \
+	    --allow-external Pyrex \
+	    --allow-unverified Pyrex
+
 clean:
 	rm -rf build dist MANIFEST tags
 	find . -name '*.py[oc]' -exec rm {} \;
 .PHONY: clean
+
+
+# Packaging
 
 develop:
 	# create executable entry points in our python or virtualenv's bin dir
@@ -37,17 +60,4 @@ register: clean
 upload: clean
 	python setup.py sdist --formats=zip,gztar register upload
 .PHONY: upload
-
-
-# profile:
-#   # runsnake is a GUI visualiser for the output of cProfile
-#   # http://www.vrplumber.com/programming/runsnakerun/
-# 	python -O -m cProfile -o profile.out tanks
-# 	runsnake profile.out
-# .PHONY: profile
-
-# py2exe:
-# 	rm -rf dist/tanks-${RELEASE}.* build
-# 	python setup.py --quiet py2exe
-# .PHONY: py2exe
 

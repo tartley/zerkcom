@@ -3,5 +3,6 @@
 MANIFEST.in
 build
 dist
+pypackages
 tags
 

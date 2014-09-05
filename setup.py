@@ -16,6 +16,16 @@ from setuptools import setup, find_packages
 
 NAME = 'tanks'
 
+INSTALL_REQUIRES = [
+    'colortuple==1.0.2',
+    'py2d==0.1',
+    'pyglet==1.2alpha1',
+    'PyOpenGL==3.0.2a5',
+    'Pyrex==0.9.9',
+    'Rabbyt==0.8.3',
+]
+
+
 
 def read_description(filename):
     '''
@@ -68,11 +78,6 @@ def get_data_files(dest, source):
 
 def get_sdist_config(data_dir):
     description, long_description = read_description('README.rst')
-
-    install_requires = []
-    if sys.version_info < (2, 7):
-        install_requires.append("argparse >= 1.2.1")
-
     return dict(
         name=NAME,
         version=find_value(
@@ -89,7 +94,7 @@ def get_sdist_config(data_dir):
             'console_scripts': ['{0} = {0}.main:main'.format(NAME)],
             'gui_scripts': [],
         },
-        install_requires=install_requires,
+        install_requires=INSTALL_REQUIRES,
         packages=find_packages(exclude=('*.tests',)),
         include_package_data=True,
         #package_data={
