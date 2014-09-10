@@ -22,11 +22,12 @@ tags:
 deps:
 	# on Ubuntu 14.04
 	# For Rabbyt, install OpenGL header files GL/gl.h & GL/glu.h
-	sudo apt-get install mesa-common-dev freeglut3-dev
+	sudo apt-get install mesa-common-dev freeglut3-dev python-dev
 	. ~/.bashrc.virtualenvwrapper ; \
 	rmvirtualenv zerkcom ; \
 	mkvirtualenv -p `which python2.7` zerkcom ; \
 	which pip ; \
+	which python ; \
 	virtualenvwrapper_verify_active_environment ; \
 	# To find GL/gl.h & GL/glu.h
 	# This step works if zerkcom virtualenv is active when running 'make deps'
