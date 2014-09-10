@@ -11,6 +11,11 @@ Single player game, use arrow keys or WASD, and space.
 
 See 'zerkcom -h' for command-line options.
 
+Screenshot
+----------
+
+.. image:: screenshots/latest.png
+
 Dependencies
 ------------
 
