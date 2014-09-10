@@ -14,7 +14,7 @@ See 'zerkcom -h' for command-line options.
 Screenshot
 ----------
 
-.. image:: screenshots/latest.png
+.. image:: https://raw.githubusercontent.com/tartley/zerkcom/master/screenshots/2014-09-07%20one%20driveable%20tank.png
 
 Dependencies
 ------------
